@@ -1,0 +1,61 @@
+# Tratamento de Dados do GLPI - (15/04/2026)
+
+! Os dados a serem analisados a baixo foram feito com um os dados do GLPI do Verdana.csv do dia 14/04/2026.
+
+- Coluna Tempo_atribuicao está com mais de 7.867 linhas com valores nulos.
+-> Solução: Pegar a Mediana de Tempo Atribuido para o restante dos 14.557 Valores.
+
+- Coluna Tempo_solucao tem 1.788 linhas com valores nulos.
+-> Solução: Pegar a Media do Tempo dos ultimos casos solucinados para o restante dos 19.551 valores.
+
+- Coluna Data_Fechamento cerca de 748 linhas estão com valores nulos.
+-> Se não possui uma data de Fechamento ou está aberto ou está pendente.
+-> Dos casos que estão solucionados são 166 linhas.
+
+- Coluna nome_tecnico está com mais de 5.333 linhas nulas.
+-> A qual cerca de 295 linhas de novos e em atendimento estão sem técnico atribuido.
+
+# Detalhes Importantes a serem Lembrados! - (17/04/2026)
+
+° Um Chamado Solucionado é quando o Requerente diz que foi encerrado, porém
+para o Chamado ser Fechado ele precisa ser feito pelo próprio Técnico.
+
+° Na Filtragem e Tratativa de Dados Precisa ser feito a analise nas informações que
+constam como; "Error" "null"
+
+
+# Tratativa dos Dados GLPI via Excel - (17/04/2026)
+
+1. Separação de Colunas via Texto para Colunas.
+
+2. Não foi feito a alteração nos Caracteres Especiais, devido ao Power Query do Power BI
+já fazer a conversão correto dos Dados. (No caso a fonte dos dados no Excel está como ABNT 2 e o Power Query, converte para a fonte UTF-8).
+
+
+# Revisitando os dados GLPI do Verdanadesk no Excel - (22/04/2026)
+
+* Para evitar os procedimentos sejam feitos todos no Power BI, foi feito o tratamento dos dados no próprio Excel.
+Para que ao fazer qualquer transformação dos dados no BI, os dados já estejam prontos.
+
+# Mudança da fonte de Dados de Excel para o PostGreeSQL - (24/04/2026)
+
+* Fazendo as principais medidas, e continuando a fazer os relacionamentos e Mudanças
+para o Power BI.
+
+LINHAGEM DOS DADOS:
+
+API VERDANA
+↓
+PostgreSQL STG
+↓
+Tratamento Python
+↓
+INT
+↓
+DW STAR SCHEMA
+↓
+Governança OpenMetadata
+↓
+Power BI
+
+
